@@ -10,12 +10,13 @@
 	</parent>
 	<groupId>com.EStockMarketApp</groupId>
 	<artifactId>message-queue-services</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>message-queue-services</name>
 	<description>message queue services for EStockMarketApp</description>
-	
+		
 	<properties>
 		<java.version>11</java.version>
+		<spring-cloud.version>2021.0.4</spring-cloud.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -59,6 +60,18 @@
 		</dependency>
 		
 		<dependency>
+    		<groupId>org.springframework.cloud</groupId>
+      		<artifactId>spring-cloud-starter-sleuth</artifactId>
+      		<version>2.0.1.RELEASE</version>
+    	</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+			<version>2.0.1.RELEASE</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
@@ -79,23 +92,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<excludes>
+				<image>
+						<name>karthiks7678/estockmarketappv1-${project.artifactId}:${project.version}</name>
+					</image>
+					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
+					<!-- <excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
-					</excludes>
-					<image>
-						<name>karthiks7678/estockmarketappv1-${project.artifactId}:${project.version}</name>
-					</image>
-					
+					</excludes> -->
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>com.microsoft.azure</groupId>
 				<artifactId>azure-webapp-maven-plugin</artifactId>
 				<version>2.5.0</version>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 
